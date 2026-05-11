@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="theme-color" content="#050404">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+<meta name="x-apple-disable-message-reformatting">
+<title>AKHARA · STRATEGY · MOATS + DISTRIBUTION</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:      #C9A84C;
+  --gold2:     #B8964E;
+  --black:     #050404;
+  --white:     #F2EDE4;
+  --grey:      rgba(242,237,228,0.55);
+  --grey2:     rgba(242,237,228,0.40);
+  --grey3:     rgba(242,237,228,0.25);
+  --gold-dim:  rgba(201,168,76,0.12);
+  --gold-dim2: rgba(201,168,76,0.06);
+  --gold-line: rgba(184,150,78,0.2);
+  --panel:     rgba(10,9,8,0.6);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--black) !important;color:var(--white);font-family:'DM Mono',monospace;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+a[href^="tel"], a[href^="sms"], a[href^="mailto"], a[x-apple-data-detectors]{
+  color:inherit !important;
+  text-decoration:none !important;
+  -webkit-text-fill-color:inherit !important;
+  pointer-events:auto;
+}
+
+::selection{background:var(--gold);color:var(--black)}
+
+/* LOADER */
+#loader{
+  position:fixed;inset:0;z-index:10000;
+  background:var(--black);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 0.6s ease;
+}
+#loader.out{opacity:0;pointer-events:none}
+#loader svg{width:160px;height:auto}
+#loader .baseLine,#loader .pillarL,#loader .pillarC,#loader .pillarR{
+  stroke-dasharray:400;stroke-dashoffset:400;
+  animation:draw 0.5s ease forwards;
+}
+#loader .baseLine{animation-delay:0s}
+#loader .pillarC{animation-delay:0.5s}
+#loader .pillarL,#loader .pillarR{animation-delay:1s}
+#loader .apexDot,#loader .haloRing{opacity:0;animation:fadeIn 0.4s ease forwards}
+#loader .apexDot{animation-delay:1.5s}
+#loader .haloRing{animation-delay:1.8s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadeIn{to{opacity:1}}
+
+/* FILM GRAIN */
+#grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.04}
+
+/* SCROLL PROGRESS */
+#progress{
+  position:fixed;top:0;left:0;height:2px;width:0;
+  background:linear-gradient(90deg,transparent,var(--gold));
+  z-index:9998;transition:width 0.1s ease-out;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding:80px 24px 60px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;
+  border-bottom:1px solid var(--gold-line);
+}
+.hero-top{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:4px;
+  color:var(--gold);
+}
+.hero-top .pulse{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--gold);
+  margin-right:8px;display:inline-block;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+.hero-mid{
+  display:flex;flex-direction:column;
+  gap:24px;
+  padding:60px 0;
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:5px;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+.hero-h1{
+  font-family:'Italiana',serif;
+  font-size:clamp(48px,14vw,140px);
+  font-weight:400;
+  line-height:0.95;
+  color:var(--white);
+  letter-spacing:-0.02em;
+}
+.hero-h1 em{
+  font-style:normal;
+  color:var(--gold);
+}
+.hero-sub{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:1px;line-height:1.9;
+  color:var(--grey);
+  max-width:600px;
+  margin-top:24px;
+}
+
+.hero-bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  padding-top:32px;
+  border-top:1px solid var(--gold-line);
+}
+.hero-bottom-cell{}
+.hero-bottom-label{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:4px;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.hero-bottom-val{
+  font-family:'Italiana',serif;
+  font-size:18px;
+  color:var(--white);
+  line-height:1.3;
+}
+
+@media (min-width:800px){
+  .hero{padding:80px 60px 60px}
+  .hero-bottom{grid-template-columns:repeat(4,1fr)}
+}
+
+/* SECTION FRAMING */
+section{
+  position:relative;
+  padding:80px 24px;
+  border-bottom:1px solid var(--gold-line);
+}
+@media (min-width:800px){
+  section{padding:120px 60px}
+}
+
+.section-num{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:5px;
+  color:var(--gold);
+  margin-bottom:16px;
+}
+.section-title{
+  font-family:'Italiana',serif;
+  font-size:clamp(36px,8vw,80px);
+  font-weight:400;
+  line-height:1;
+  color:var(--white);
+  margin-bottom:24px;
+  letter-spacing:-0.01em;
+}
+.section-lede{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:0.8px;line-height:1.9;
+  color:var(--grey);
+  max-width:680px;
+  margin-bottom:60px;
+}
+.section-lede strong{color:var(--gold);font-weight:400}
+
+/* WATERMARK */
+.wmark{
+  position:absolute;
+  font-family:'Italiana',serif;
+  font-size:clamp(80px,18vw,180px);
+  font-weight:400;
+  color:rgba(201,168,76,0.04);
+  letter-spacing:-3px;
+  pointer-events:none;
+  line-height:1;
+  z-index:0;
+}
+
+/* MOAT CARDS */
+.moats-grid{
+  display:flex;flex-direction:column;
+  gap:24px;
+  position:relative;z-index:2;
+}
+.moat-card{
+  border:1px solid var(--gold-line);
+  background:var(--gold-dim2);
+  padding:32px 24px;
+  position:relative;
+}
+.moat-card[data-status="have"]{border-color:var(--gold)}
+.moat-card-top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:20px;gap:16px;
+}
+.moat-num{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:4px;
+  color:var(--gold);
+}
+.moat-status{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:3px;
+  padding:4px 10px;
+  border:1px solid var(--gold-line);
+  color:var(--gold);
+  white-space:nowrap;
+}
+.moat-status.have{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.moat-name{
+  font-family:'Italiana',serif;
+  font-size:32px;
+  color:var(--white);
+  margin-bottom:8px;
+  line-height:1.1;
+}
+.moat-tag{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:2px;
+  color:var(--grey2);
+  margin-bottom:20px;
+  text-transform:uppercase;
+}
+.moat-body{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:0.5px;line-height:1.85;
+  color:var(--grey);
+  margin-bottom:24px;
+}
+.moat-body em{color:var(--gold);font-style:normal}
+
+.moat-score{
+  display:flex;align-items:center;gap:12px;
+  padding-top:20px;
+  border-top:1px solid var(--gold-line);
+}
+.moat-score-label{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:3px;
+  color:var(--grey2);
+}
+.moat-bar{
+  flex:1;height:2px;
+  background:rgba(201,168,76,0.15);
+  position:relative;
+}
+.moat-bar-fill{
+  position:absolute;left:0;top:0;height:100%;
+  background:var(--gold);
+}
+.moat-score-val{
+  font-family:'Italiana',serif;
+  font-size:14px;
+  color:var(--gold);
+}
+
+@media (min-width:800px){
+  .moats-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+  }
+}
+
+/* SCORECARD */
+.scorecard{
+  margin-top:60px;
+  border:1px solid var(--gold);
+  padding:0;
+  overflow:hidden;
+}
+.scorecard-row{
+  display:grid;
+  grid-template-columns:1fr 80px 80px;
+  padding:16px 20px;
+  border-bottom:1px solid var(--gold-line);
+  align-items:center;
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:1px;
+}
+.scorecard-row:last-child{border-bottom:none}
+.scorecard-row.head{
+  background:var(--gold);
+  color:var(--black);
+  font-size:8px;letter-spacing:3px;
+  text-transform:uppercase;
+}
+.scorecard-row.head > div{font-weight:500}
+.scorecard-row .name{color:var(--white)}
+.scorecard-row .v1{color:var(--grey);text-align:center}
+.scorecard-row .v2{color:var(--gold);text-align:center;font-family:'Italiana',serif;font-size:16px}
+
+/* DISTRIBUTION CHANNELS */
+.channel{
+  border:1px solid var(--gold-line);
+  padding:32px 24px;
+  margin-bottom:24px;
+  position:relative;
+  background:var(--gold-dim2);
+}
+.channel-rank{
+  position:absolute;
+  top:-1px;left:-1px;
+  background:var(--gold);
+  color:var(--black);
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:3px;
+  padding:6px 12px;
+}
+.channel-top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:24px;margin-top:24px;
+  gap:16px;flex-wrap:wrap;
+}
+.channel-name{
+  font-family:'Italiana',serif;
+  font-size:36px;
+  color:var(--white);
+  line-height:1;
+}
+.channel-tag{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:3px;
+  color:var(--gold);
+  text-transform:uppercase;
+  padding:6px 12px;
+  border:1px solid var(--gold-line);
+}
+.channel-why{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:0.5px;line-height:1.9;
+  color:var(--grey);
+  margin-bottom:24px;
+}
+.channel-stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  background:var(--gold-line);
+  border:1px solid var(--gold-line);
+  margin-bottom:24px;
+}
+.channel-stat{
+  background:var(--black);
+  padding:16px 12px;
+}
+.channel-stat-label{
+  font-family:'DM Mono',monospace;
+  font-size:7px;letter-spacing:3px;
+  color:var(--grey2);
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.channel-stat-val{
+  font-family:'Italiana',serif;
+  font-size:22px;
+  color:var(--gold);
+  line-height:1;
+}
+.channel-stat-sub{
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  color:var(--grey);
+  margin-top:4px;
+}
+.channel-math{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:0.5px;line-height:1.9;
+  color:var(--grey);
+  padding:16px 0;
+  border-top:1px solid var(--gold-line);
+}
+.channel-math strong{color:var(--gold);font-weight:400}
+
+/* TIME ALLOCATION */
+.time-grid{
+  display:flex;flex-direction:column;
+  gap:1px;
+  background:var(--gold-line);
+  border:1px solid var(--gold-line);
+  margin-bottom:40px;
+}
+.time-row{
+  background:var(--black);
+  padding:20px 24px;
+  display:grid;
+  grid-template-columns:1fr 110px;
+  align-items:center;
+  gap:16px;
+}
+.time-row.head{
+  background:var(--gold);color:var(--black);
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:3px;text-transform:uppercase;
+}
+.time-task{
+  font-family:'DM Mono',monospace;
+  font-size:11px;line-height:1.6;
+  color:var(--white);
+}
+.time-task small{display:block;color:var(--grey2);font-size:9px;margin-top:4px;letter-spacing:0.5px}
+.time-val{
+  font-family:'Italiana',serif;
+  font-size:18px;
+  color:var(--gold);
+  text-align:right;
+}
+
+/* SPLIT — HUMAN vs AI */
+.split{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:24px;
+  margin:40px 0;
+}
+@media (min-width:800px){
+  .split{grid-template-columns:1fr 1fr}
+}
+.split-col{
+  border:1px solid var(--gold-line);
+  padding:32px 24px;
+  background:var(--gold-dim2);
+}
+.split-col.you{border-color:var(--gold)}
+.split-label{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:4px;
+  color:var(--gold);
+  margin-bottom:8px;
+  text-transform:uppercase;
+}
+.split-h{
+  font-family:'Italiana',serif;
+  font-size:32px;
+  color:var(--white);
+  margin-bottom:24px;
+  line-height:1;
+}
+.split-list{
+  list-style:none;
+  font-family:'DM Mono',monospace;
+  font-size:11px;line-height:1.9;
+  color:var(--grey);
+}
+.split-list li{
+  padding:8px 0;
+  padding-left:20px;
+  position:relative;
+  border-bottom:1px dotted var(--gold-line);
+}
+.split-list li:last-child{border-bottom:none}
+.split-list li::before{
+  content:'';
+  position:absolute;
+  left:0;top:14px;
+  width:8px;height:1px;
+  background:var(--gold);
+}
+.split-list li strong{color:var(--white);font-weight:400}
+
+/* TIMELINE */
+.timeline{
+  position:relative;
+  padding-left:32px;
+  margin:40px 0;
+}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:6px;top:0;bottom:0;
+  width:1px;
+  background:var(--gold-line);
+}
+.tl-row{
+  position:relative;
+  padding-bottom:32px;
+}
+.tl-row::before{
+  content:'';
+  position:absolute;
+  left:-30px;top:6px;
+  width:13px;height:13px;
+  border-radius:50%;
+  background:var(--black);
+  border:1px solid var(--gold);
+}
+.tl-row.active::before{
+  background:var(--gold);
+  box-shadow:0 0 12px rgba(201,168,76,0.6);
+}
+.tl-week{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:4px;
+  color:var(--gold);
+  margin-bottom:6px;
+}
+.tl-h{
+  font-family:'Italiana',serif;
+  font-size:22px;
+  color:var(--white);
+  margin-bottom:8px;
+  line-height:1.1;
+}
+.tl-body{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:0.5px;line-height:1.8;
+  color:var(--grey);
+}
+.tl-body strong{color:var(--gold);font-weight:400}
+
+/* MRR CARDS */
+.mrr-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1px;
+  background:var(--gold-line);
+  border:1px solid var(--gold-line);
+  margin:40px 0;
+}
+@media (min-width:800px){
+  .mrr-grid{grid-template-columns:repeat(3,1fr)}
+}
+.mrr-card{
+  background:var(--black);
+  padding:32px 24px;
+  text-align:left;
+}
+.mrr-card.aggressive{background:var(--gold);color:var(--black)}
+.mrr-card.aggressive .mrr-label,
+.mrr-card.aggressive .mrr-h,
+.mrr-card.aggressive .mrr-body{color:var(--black)}
+.mrr-label{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:4px;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.mrr-h{
+  font-family:'Italiana',serif;
+  font-size:42px;
+  color:var(--white);
+  line-height:1;
+  margin-bottom:16px;
+}
+.mrr-body{
+  font-family:'DM Mono',monospace;
+  font-size:10px;line-height:1.8;
+  color:var(--grey);
+}
+
+/* SIX MOVES — what we need to do to hit 40-80K */
+.moves{
+  counter-reset:move;
+  margin:40px 0;
+}
+.move{
+  border-top:1px solid var(--gold-line);
+  padding:32px 0;
+  counter-increment:move;
+  position:relative;
+  padding-left:50px;
+}
+.move:last-child{border-bottom:1px solid var(--gold-line)}
+.move::before{
+  content:counter(move,decimal-leading-zero);
+  position:absolute;
+  left:0;top:32px;
+  font-family:'Italiana',serif;
+  font-size:24px;
+  color:var(--gold);
+}
+.move-h{
+  font-family:'Italiana',serif;
+  font-size:22px;
+  color:var(--white);
+  margin-bottom:12px;
+  line-height:1.2;
+}
+.move-body{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:0.5px;line-height:1.9;
+  color:var(--grey);
+}
+.move-body strong{color:var(--gold);font-weight:400}
+
+/* FOOTER STAMP */
+.stamp{
+  padding:120px 24px 80px;
+  text-align:center;
+  position:relative;
+}
+@media (min-width:800px){.stamp{padding:160px 60px 100px}}
+.stamp-h{
+  font-family:'Italiana',serif;
+  font-size:clamp(48px,12vw,120px);
+  color:var(--white);
+  line-height:1;
+  margin-bottom:24px;
+  letter-spacing:-0.02em;
+}
+.stamp-h em{color:var(--gold);font-style:normal}
+.stamp-sub{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:5px;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+
+/* REVEAL */
+.r,.r2,.r3{opacity:0;transform:translateY(20px);transition:opacity 0.8s ease, transform 0.8s ease}
+.r.in,.r2.in,.r3.in{opacity:1;transform:translateY(0)}
+.r2{transition-delay:0.15s}
+.r3{transition-delay:0.3s}
+
+/* DETAILS LIST */
+.dlist{
+  list-style:none;
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:0.5px;line-height:1.9;
+  color:var(--grey);
+  margin:20px 0;
+}
+.dlist li{
+  padding:6px 0;
+  padding-left:24px;
+  position:relative;
+}
+.dlist li::before{
+  content:'·';
+  color:var(--gold);
+  position:absolute;
+  left:8px;
+  font-size:18px;
+  line-height:1.2;
+}
+.dlist li strong{color:var(--white);font-weight:400}
+
+/* PROSE */
+.prose{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:0.5px;line-height:1.9;
+  color:var(--grey);
+  max-width:720px;
+  margin-bottom:24px;
+}
+.prose strong{color:var(--gold);font-weight:400}
+.prose em{color:var(--white);font-style:normal}
+
+/* ─── NICHE RANKING CARDS ─── */
+.niche{
+  border:1px solid var(--gold-line);
+  background:var(--gold-dim2);
+  padding:0;
+  margin-bottom:32px;
+  position:relative;
+  overflow:hidden;
+}
+.niche.rank-1{border:1px solid var(--gold)}
+.niche-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:stretch;
+  border-bottom:1px solid var(--gold-line);
+  padding:0;
+}
+.niche.rank-1 .niche-head{border-bottom-color:var(--gold)}
+.niche-rank{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:24px 28px;
+  border-right:1px solid var(--gold-line);
+  min-width:90px;
+  background:var(--black);
+}
+.niche.rank-1 .niche-rank{
+  background:var(--gold);
+  border-right-color:var(--gold);
+}
+.niche.rank-1 .niche-rank-num,
+.niche.rank-1 .niche-rank-label{color:var(--black)}
+.niche-rank-label{
+  font-family:'DM Mono',monospace;
+  font-size:7px;letter-spacing:3px;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.niche-rank-num{
+  font-family:'Italiana',serif;
+  font-size:38px;
+  color:var(--gold);
+  line-height:1;
+}
+.niche-head-body{
+  flex:1;
+  padding:20px 24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.niche-name{
+  font-family:'Italiana',serif;
+  font-size:26px;
+  color:var(--white);
+  line-height:1.1;
+  letter-spacing:-0.01em;
+  margin-bottom:4px;
+}
+.niche.rank-1 .niche-name{color:var(--gold)}
+.niche-tag{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:3px;
+  color:var(--grey2);
+  text-transform:uppercase;
+}
+
+.niche-body{
+  padding:24px 24px 8px;
+}
+.niche-why{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:0.5px;line-height:1.85;
+  color:var(--grey);
+  margin-bottom:24px;
+}
+.niche-why strong{color:var(--gold);font-weight:400}
+.niche-why em{color:var(--white);font-style:normal}
+
+.niche-metrics{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  background:var(--gold-line);
+  margin:0 -24px 24px;
+  border-top:1px solid var(--gold-line);
+  border-bottom:1px solid var(--gold-line);
+}
+@media (min-width:800px){
+  .niche-metrics{grid-template-columns:repeat(3,1fr)}
+}
+.niche-metric{
+  background:var(--black);
+  padding:16px 14px;
+}
+.niche-metric-label{
+  font-family:'DM Mono',monospace;
+  font-size:7px;letter-spacing:3px;
+  color:var(--grey2);
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.niche-metric-val{
+  font-family:'Italiana',serif;
+  font-size:18px;
+  color:var(--gold);
+  line-height:1.1;
+}
+.niche-metric-sub{
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  color:var(--grey);
+  margin-top:4px;
+}
+
+.niche-verdict{
+  padding:16px 24px;
+  background:var(--gold-dim);
+  border-top:1px solid var(--gold-line);
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:0.5px;line-height:1.7;
+  color:var(--white);
+  margin:0 -24px -8px;
+}
+.niche-verdict strong{color:var(--gold);font-weight:400}
+.niche.rank-1 .niche-verdict{background:var(--gold);color:var(--black)}
+.niche.rank-1 .niche-verdict strong{color:var(--black);font-weight:500}
+
+/* Niche dimension grid (which metric matters in which niche) */
+.dim-table{
+  margin:60px 0 40px;
+  border:1px solid var(--gold);
+  overflow:hidden;
+}
+.dim-row{
+  display:grid;
+  grid-template-columns:1fr 60px 60px 60px 60px 60px;
+  padding:12px 14px;
+  border-bottom:1px solid var(--gold-line);
+  align-items:center;
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:0.5px;
+}
+.dim-row:last-child{border-bottom:none}
+.dim-row.head{
+  background:var(--gold);color:var(--black);
+  font-size:7px;letter-spacing:2px;
+  text-transform:uppercase;
+}
+.dim-row.head > div{font-weight:500;text-align:center}
+.dim-row.head > div:first-child{text-align:left}
+.dim-row .dim-name{color:var(--white);text-align:left;font-size:10px}
+.dim-row .dim-v{text-align:center;color:var(--gold);font-family:'Italiana',serif;font-size:14px}
+
+/* ─── CHECKBOXES — tickable, persistent, brand-locked ─── */
+.check{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  cursor:pointer;
+  user-select:none;
+  padding:10px 0;
+  border-bottom:1px dotted var(--gold-line);
+  transition:opacity 0.3s ease;
+}
+.check:last-child{border-bottom:none}
+.check input[type="checkbox"]{
+  appearance:none;
+  -webkit-appearance:none;
+  width:16px;height:16px;
+  border:1px solid var(--gold);
+  background:transparent;
+  cursor:pointer;
+  flex-shrink:0;
+  margin-top:3px;
+  position:relative;
+  transition:background 0.2s ease;
+}
+.check input[type="checkbox"]:checked{
+  background:var(--gold);
+}
+.check input[type="checkbox"]:checked::after{
+  content:'';
+  position:absolute;
+  left:4px;top:0;
+  width:5px;height:10px;
+  border:solid var(--black);
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
+}
+.check-label{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:0.5px;line-height:1.7;
+  color:var(--grey);
+  transition:color 0.3s ease, text-decoration 0.3s ease;
+  flex:1;
+}
+.check-label strong{color:var(--gold);font-weight:400}
+.check.done{opacity:0.5}
+.check.done .check-label{
+  color:var(--grey3);
+  text-decoration:line-through;
+  text-decoration-color:var(--gold);
+}
+.check.done .check-label strong{color:var(--gold-line)}
+
+.checklist-h{
+  font-family:'Italiana',serif;
+  font-size:22px;
+  color:var(--white);
+  margin:32px 0 16px;
+  line-height:1.2;
+  letter-spacing:-0.01em;
+}
+.checklist-h:first-of-type{margin-top:0}
+.checklist-meta{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:4px;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+/* Progress counter */
+.check-progress{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 24px;
+  background:var(--gold-dim);
+  border:1px solid var(--gold);
+  margin-bottom:32px;
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:3px;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+.check-progress-num{
+  font-family:'Italiana',serif;
+  font-size:24px;
+  color:var(--white);
+  letter-spacing:-0.01em;
+}
+
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <svg viewBox="0 0 512 560" xmlns="http://www.w3.org/2000/svg">
+    <line class="baseLine" x1="80" y1="460" x2="432" y2="460" stroke="#C9A84C" stroke-width="2"/>
+    <line class="pillarL" x1="192" y1="460" x2="192" y2="180" stroke="#C9A84C" stroke-width="2.5"/>
+    <line class="pillarC" x1="256" y1="460" x2="256" y2="120" stroke="#C9A84C" stroke-width="3"/>
+    <line class="pillarR" x1="320" y1="460" x2="320" y2="180" stroke="#C9A84C" stroke-width="2.5"/>
+    <circle class="apexDot" cx="256" cy="90" r="7" fill="#C9A84C"/>
+    <circle class="haloRing" cx="256" cy="90" r="22" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.55"/>
+  </svg>
+</div>
+
+<!-- FILM GRAIN -->
+<div id="grain"><canvas id="gc" style="width:100%;height:100%"></canvas></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="progress"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-top">
+    <div><span class="pulse"></span>AKHARA · STRATEGY</div>
+    <div>V1 · MAY 2026</div>
+  </div>
+
+  <div class="hero-mid">
+    <div class="hero-eyebrow r">THE COMPOUND PLAY · MOATS + DISTRIBUTION + TIMELINE</div>
+    <h1 class="hero-h1 r2">Six moats.<br>Three channels.<br><em>One operator.</em></h1>
+    <p class="hero-sub r3">The single document that locks AKHARA's defensibility, distribution cadence, and the timeline to first close, $40K MRR, and $80K MRR. Every number is reverse-engineered. Every hour is accounted for. Every channel is ranked by close rate × time-to-revenue × moat compounding.</p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-bottom-cell">
+      <div class="hero-bottom-label">FIRST CLOSE</div>
+      <div class="hero-bottom-val">Week 3–4</div>
+    </div>
+    <div class="hero-bottom-cell">
+      <div class="hero-bottom-label">$40K MRR</div>
+      <div class="hero-bottom-val">Month 4–5</div>
+    </div>
+    <div class="hero-bottom-cell">
+      <div class="hero-bottom-label">$80K MRR</div>
+      <div class="hero-bottom-val">Month 6–8</div>
+    </div>
+    <div class="hero-bottom-cell">
+      <div class="hero-bottom-label">HOURS / WEEK</div>
+      <div class="hero-bottom-val">~30 hrs</div>
+    </div>
+  </div>
+</header>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 01 — THE 6 MOATS
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:5%;left:-3%">MOATS</div>
+  <div class="section-num r">01 · DEFENSIBILITY</div>
+  <h2 class="section-title r">The Six Moats.</h2>
+  <p class="section-lede r2">Michia exited for nine figures using <strong>two</strong> moats. The math compounds — every additional moat multiplies defensibility. AKHARA scores half of one today. The plan: four real moats inside twelve months. Here's where every moat sits, what it'll take to max each, and the honest verdict on AKHARA's current position.</p>
+
+  <div class="moats-grid">
+
+    <!-- BRAND -->
+    <div class="moat-card r">
+      <div class="moat-card-top">
+        <div class="moat-num">01 · BRAND</div>
+        <div class="moat-status">BUILDING</div>
+      </div>
+      <h3 class="moat-name">Brand Moat</h3>
+      <div class="moat-tag">FEELING · LIFESTYLE · IDENTITY</div>
+      <div class="moat-body">The bones are exceptional — Pillar Crowned Halo, Italiana + DM Mono, Meridian Gold on void, Voice Rules, Content Doctrine, brutalist luxury. The <em>system</em> exists. The <em>moat</em> doesn't, until people have repeat exposure and start associating AKHARA with a specific feeling competitors can't replicate. Months of consistent posting + clients in market + the playbook live = brand moat materializes.</div>
+      <div class="moat-score">
+        <div class="moat-score-label">TODAY</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:0%"></div></div>
+        <div class="moat-score-val">0 / 10</div>
+      </div>
+      <div class="moat-score">
+        <div class="moat-score-label">12 MO</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:80%"></div></div>
+        <div class="moat-score-val">8 / 10</div>
+      </div>
+    </div>
+
+    <!-- DISTRIBUTION -->
+    <div class="moat-card r2">
+      <div class="moat-card-top">
+        <div class="moat-num">02 · DISTRIBUTION</div>
+        <div class="moat-status">CRITICAL GAP</div>
+      </div>
+      <h3 class="moat-name">Distribution Moat</h3>
+      <div class="moat-tag">UNFAIR ACCESS · COMPOUNDING REACH</div>
+      <div class="moat-body">Zero today. No list. No SEO. No audience. Cold outreach only. <em>This is the most exposed moat AND the highest compounding leverage in the entire stack.</em> Every week of consistent content widens the moat. Greg Isenberg: "Code is commoditized. Distribution is the new moat." Cody Schneider's exit was built on owned media. Fix this fast.</div>
+      <div class="moat-score">
+        <div class="moat-score-label">TODAY</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:0%"></div></div>
+        <div class="moat-score-val">0 / 10</div>
+      </div>
+      <div class="moat-score">
+        <div class="moat-score-label">12 MO</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:70%"></div></div>
+        <div class="moat-score-val">7 / 10</div>
+      </div>
+    </div>
+
+    <!-- DATA -->
+    <div class="moat-card r">
+      <div class="moat-card-top">
+        <div class="moat-num">03 · DATA</div>
+        <div class="moat-status">DORMANT</div>
+      </div>
+      <h3 class="moat-name">Data Moat</h3>
+      <div class="moat-tag">PROPRIETARY DATA · COMPOUNDING ACCURACY</div>
+      <div class="moat-body">Not relevant today — every client gets configured Make.com workflows + Claude API calls, nothing compounds across deployments. <em>But</em>: every client teaches you what works in The Closer / Operator / Architect / Strategist system prompts. After 5 clients, refined prompts no competitor can replicate without 5 clients of their own. After 20, you have an unfair playbook with 10,000+ data points across response times, reply rates, booking rates, ticket resolution.</div>
+      <div class="moat-score">
+        <div class="moat-score-label">TODAY</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:0%"></div></div>
+        <div class="moat-score-val">0 / 10</div>
+      </div>
+      <div class="moat-score">
+        <div class="moat-score-label">12 MO</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:60%"></div></div>
+        <div class="moat-score-val">6 / 10</div>
+      </div>
+    </div>
+
+    <!-- ECOSYSTEM -->
+    <div class="moat-card r2">
+      <div class="moat-card-top">
+        <div class="moat-num">04 · ECOSYSTEM</div>
+        <div class="moat-status">N / A</div>
+      </div>
+      <h3 class="moat-name">Ecosystem Moat</h3>
+      <div class="moat-tag">PLATFORM · NETWORK EFFECT</div>
+      <div class="moat-body">Not AKHARA's moat. Probably never will be. Ecosystem moats are platforms — YouTube, Salesforce, Shopify, iOS. AKHARA is a service, not a platform. Can't realistically build an ecosystem moat without a ten-year horizon. <em>Skip this one entirely.</em> Don't waste energy chasing it. Pour that energy into the two moats that compound fastest for service businesses: distribution and IP.</div>
+      <div class="moat-score">
+        <div class="moat-score-label">N / A</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:0%;background:var(--grey3)"></div></div>
+        <div class="moat-score-val" style="color:var(--grey2)">—</div>
+      </div>
+    </div>
+
+    <!-- COMPLIANCE -->
+    <div class="moat-card r">
+      <div class="moat-card-top">
+        <div class="moat-num">05 · COMPLIANCE</div>
+        <div class="moat-status">PARTIAL</div>
+      </div>
+      <h3 class="moat-name">Compliance Moat</h3>
+      <div class="moat-tag">REGULATORY · GEOGRAPHIC · LEGAL TAPE</div>
+      <div class="moat-body">Geography accidentally gave you one. <em>South African operating cost base + USD billing = structural margin advantage US agencies can't match.</em> Once first deployment lands inside a regulated industry (med spas / HIPAA, real estate / TCPA + Fair Housing, finance / KYC), you build compliance scar tissue competitors can't shortcut. Michia's example: 50 states × federal × state × zip code rules took years and hundreds of thousands of dollars. Yours starts at deployment 1.</div>
+      <div class="moat-score">
+        <div class="moat-score-label">TODAY</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:20%"></div></div>
+        <div class="moat-score-val">2 / 10</div>
+      </div>
+      <div class="moat-score">
+        <div class="moat-score-label">12 MO</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:50%"></div></div>
+        <div class="moat-score-val">5 / 10</div>
+      </div>
+    </div>
+
+    <!-- IP -->
+    <div class="moat-card r2" data-status="have">
+      <div class="moat-card-top">
+        <div class="moat-num">06 · IP</div>
+        <div class="moat-status have">PARTIAL</div>
+      </div>
+      <h3 class="moat-name">Hard-Coded IP Moat</h3>
+      <div class="moat-tag">PROPRIETARY LOGIC · FIELD-TESTED</div>
+      <div class="moat-body">The one you already have, even though it's invisible. <em>The entire MASTER FILE is IP.</em> Voice Rules, 5-touch sequence, 8-objection handling, 12-category buyer intelligence with exact phrases per category, 7-step close, 4 internal employee system prompts, 9 employees × 5 tiers structure. Weeks to design. Untested in field but already deeper than 99% of "AI agencies" launching this week. Becomes a real moat after 3-5 clients prove and refine it.</div>
+      <div class="moat-score">
+        <div class="moat-score-label">TODAY</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:40%"></div></div>
+        <div class="moat-score-val">4 / 10</div>
+      </div>
+      <div class="moat-score">
+        <div class="moat-score-label">12 MO</div>
+        <div class="moat-bar"><div class="moat-bar-fill" style="width:80%"></div></div>
+        <div class="moat-score-val">8 / 10</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCORECARD -->
+  <div class="scorecard r">
+    <div class="scorecard-row head">
+      <div>MOAT</div>
+      <div class="v1">TODAY</div>
+      <div class="v2">12 MO</div>
+    </div>
+    <div class="scorecard-row"><div class="name">Brand</div><div class="v1">0</div><div class="v2">8</div></div>
+    <div class="scorecard-row"><div class="name">Distribution</div><div class="v1">0</div><div class="v2">7</div></div>
+    <div class="scorecard-row"><div class="name">Data</div><div class="v1">0</div><div class="v2">6</div></div>
+    <div class="scorecard-row"><div class="name">Ecosystem</div><div class="v1">—</div><div class="v2">—</div></div>
+    <div class="scorecard-row"><div class="name">Compliance</div><div class="v1">2</div><div class="v2">5</div></div>
+    <div class="scorecard-row"><div class="name">IP</div><div class="v1">4</div><div class="v2">8</div></div>
+  </div>
+
+  <p class="prose r" style="margin-top:40px"><strong>The verdict:</strong> Half of one moat today. <em>Four real moats by Month 12.</em> Michia said two = unstoppable. The plan beats that by 2x.</p>
+</section>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 02 — TOP 3 DISTRIBUTION CHANNELS
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:8%;right:-2%">CHANNELS</div>
+  <div class="section-num r">02 · DISTRIBUTION</div>
+  <h2 class="section-title r">Three Channels.<br>Ranked.</h2>
+  <p class="section-lede r2">Ranked by <strong>close rate × speed-to-revenue × moat compounding</strong>. Not by volume. Volume is the trap most agencies fall into. These three feed each other in a closed loop — every X post becomes a LinkedIn artifact becomes a newsletter section becomes inbound. The combined system converts faster and compounds longer than any single channel could.</p>
+
+  <!-- CHANNEL 1 — X -->
+  <div class="channel r">
+    <div class="channel-rank">RANK 01</div>
+    <div class="channel-top">
+      <div>
+        <div class="channel-name">X · Twitter</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--grey2);margin-top:6px">DMs + CONTENT · PAIRED</div>
+      </div>
+      <div class="channel-tag">FASTEST REPLY</div>
+    </div>
+    <div class="channel-why">Founders DM founders on X. Not assistants. Not inboxes. Phone-screen notifications. Whale founders ($500K–$10M revenue) check X compulsively. Every cold DM lands on their personal device within hours. Cost: $0.<br><br><strong>The killer move:</strong> Post 5×/week → DM the people who engage with your posts → warm-DM reply rate jumps to 50–60% because they've already self-identified as interested.</div>
+
+    <div class="channel-stats">
+      <div class="channel-stat">
+        <div class="channel-stat-label">DMs / DAY</div>
+        <div class="channel-stat-val">5</div>
+        <div class="channel-stat-sub">25 / week cold</div>
+      </div>
+      <div class="channel-stat">
+        <div class="channel-stat-label">POSTS / WEEK</div>
+        <div class="channel-stat-val">5</div>
+        <div class="channel-stat-sub">per Content Doctrine</div>
+      </div>
+      <div class="channel-stat">
+        <div class="channel-stat-label">REPLY · COLD</div>
+        <div class="channel-stat-val">25–35%</div>
+        <div class="channel-stat-sub">vs 1–2% email</div>
+      </div>
+      <div class="channel-stat">
+        <div class="channel-stat-label">REPLY · WARM</div>
+        <div class="channel-stat-val">50–60%</div>
+        <div class="channel-stat-sub">post-engagement</div>
+      </div>
+    </div>
+
+    <div class="channel-math">25 DMs/wk × 30% reply × 35% demo × 30% close = <strong>~6–9 closes / year from X alone</strong>. You only need 5. X = sufficient by itself.</div>
+  </div>
+
+  <!-- CHANNEL 2 — LINKEDIN -->
+  <div class="channel r2">
+    <div class="channel-rank">RANK 02</div>
+    <div class="channel-top">
+      <div>
+        <div class="channel-name">LinkedIn</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--grey2);margin-top:6px">LONG-FORM · SELECTIVE DMs</div>
+      </div>
+      <div class="channel-tag">HIGHEST TIER FIT</div>
+    </div>
+    <div class="channel-why">Where the actual decision-makers live for work. Long-form posts (800–1500 chars) compound — a 6-month-old post still pulls inbound when prospects find it in search. The Tier B categories (Professional Services, Tech & SaaS, Hospitality, Media) live here, not on X. They don't tweet. They post on LinkedIn.<br><br><strong>The play:</strong> Posts build authority. Selective DMs (10–15/wk) to engaged readers convert at 30–40%.</div>
+
+    <div class="channel-stats">
+      <div class="channel-stat">
+        <div class="channel-stat-label">POSTS / WEEK</div>
+        <div class="channel-stat-val">3</div>
+        <div class="channel-stat-sub">long-form 800–1500 char</div>
+      </div>
+      <div class="channel-stat">
+        <div class="channel-stat-label">DMs / WEEK</div>
+        <div class="channel-stat-val">10–15</div>
+        <div class="channel-stat-sub">selective only</div>
+      </div>
+      <div class="channel-stat">
+        <div class="channel-stat-label">REPLY · COLD</div>
+        <div class="channel-stat-val">10–15%</div>
+        <div class="channel-stat-sub">slower than X</div>
+      </div>
+      <div class="channel-stat">
+        <div class="channel-stat-label">REPLY · WARM</div>
+        <div class="channel-stat-val">30–40%</div>
+        <div class="channel-stat-sub">post-engagement</div>
+      </div>
+    </div>
+
+    <div class="channel-math">Slower than X but <strong>higher tier-fit closes</strong>. The posts themselves are the moat — search-able artifacts that pull inbound for years.</div>
+  </div>
+
+  <!-- CHANNEL 3 — NEWSLETTER -->
+  <div class="channel r3">
+    <div class="channel-rank">RANK 03</div>
+    <div class="channel-top">
+      <div>
+        <div class="channel-name">Newsletter</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--grey2);margin-top:6px">OWNED MEDIA · THE COMPOUNDING MOAT</div>
+      </div>
+      <div class="channel-tag">HIGHEST CLOSE RATE</div>
+    </div>
+    <div class="channel-why">Highest close rate of any channel — <strong>50%+</strong>. Slowest to build. <em>This is the moat that quietly takes over your pipeline by Month 9–12 and never stops compounding.</em><br><br><strong>Format: AKHARA Weekly — One AI Employee Teardown.</strong> Show a real industry's broken process → show the AI employee that replaces it → end with "AKHARA builds these for $X/mo." Cody Schneider on his exit: "When you have an email list of 400,000 people, that turns into a massive leverage point that enables you to almost do whatever you want within an industry."</div>
+
+    <div class="channel-stats">
+      <div class="channel-stat">
+        <div class="channel-stat-label">ISSUES / WEEK</div>
+        <div class="channel-stat-val">1</div>
+        <div class="channel-stat-sub">~90 min to write</div>
+      </div>
+      <div class="channel-stat">
+        <div class="channel-stat-label">CLOSE RATE</div>
+        <div class="channel-stat-val">50%+</div>
+        <div class="channel-stat-sub">pre-sold readers</div>
+      </div>
+      <div class="channel-stat">
+        <div class="channel-stat-label">SUBS · M3</div>
+        <div class="channel-stat-val">50–200</div>
+        <div class="channel-stat-sub">~1 inbound / mo</div>
+      </div>
+      <div class="channel-stat">
+        <div class="channel-stat-label">SUBS · M12</div>
+        <div class="channel-stat-val">2K–5K</div>
+        <div class="channel-stat-sub">10–15 inbound / mo</div>
+      </div>
+    </div>
+
+    <div class="channel-math">By Month 12: <strong>5–8 inbound closes / year from newsletter alone</strong>. By Year 2, this single channel can replace 60% of all outbound.</div>
+  </div>
+
+  <p class="prose r" style="margin-top:60px"><strong>Combined math at Tier 2 over 12 months:</strong> 11–17 potential closes from these three channels. <em>You need 5 whales. Pipeline has 2–3x cushion. Be selective.</em></p>
+  <p class="prose r"><strong>Email = channel #4</strong>, joining in Month 4 once you have case studies + a warmed sending domain. 50–75 highly personalized emails / day. Not 500. Not before Month 4. Volume-bombing emails burns the asset before you need it.</p>
+</section>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 03 — HUMAN vs AI SPLIT
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:5%;left:-3%">SPLIT</div>
+  <div class="section-num r">03 · THE SPLIT</div>
+  <h2 class="section-title r">What AI does.<br>What only you can.</h2>
+  <p class="section-lede r2">AI does the <strong>volume</strong>. You do the <strong>judgment</strong>. The 80/20 split works: AI produces 80% of the typing, you produce 20% — but your 20% is what makes the other 80% land. Without the human signal, AI is just remixing nothing.</p>
+
+  <div class="split">
+    <div class="split-col r">
+      <div class="split-label">THE STRATEGIST</div>
+      <h3 class="split-h">AI · Volume Work</h3>
+      <ul class="split-list">
+        <li>Drafting <strong>5 X posts</strong> from your Sunday Loom</li>
+        <li>Rewriting <strong>3 LinkedIn long-form posts/week</strong> from the same Loom</li>
+        <li>Drafting <strong>weekly newsletter</strong> from the Loom transcript</li>
+        <li>Researching <strong>50 prospects/week</strong> — bios, recent posts, pain points</li>
+        <li>Drafting <strong>25 cold X DMs + 15 LinkedIn DMs</strong> in your voice</li>
+        <li>Suggesting which engagers to DM based on post interaction</li>
+        <li>Drafting reply messages for warm conversations</li>
+        <li>Scheduling all content via Buffer</li>
+        <li>Logging metrics, killing low-performers</li>
+        <li>Generating client deliverables once contracts close</li>
+      </ul>
+    </div>
+    <div class="split-col you r2">
+      <div class="split-label">AKHANYA</div>
+      <h3 class="split-h">Human · Judgment Work</h3>
+      <ul class="split-list">
+        <li>Be <strong>the face</strong> — proof AKHARA isn't another AI-generated agency</li>
+        <li>Record <strong>one 20-min Loom every Sunday</strong> — the raw material everything compounds from</li>
+        <li>Approve <strong>every output</strong> before send (Month 1), spot-check 25% (Month 2+)</li>
+        <li>The <strong>first 30 seconds of every discovery call</strong> — read the room, adjust</li>
+        <li>The <strong>actual close</strong> — "What's stopping us from starting Monday?" + four seconds of silence</li>
+        <li>Strategic decisions — pricing, tier expansion, which prospects to fire</li>
+        <li>Reading subtext on inbound replies — AI can't tell tire-kicker from buyer</li>
+        <li>Picking which 5 clients to take when 10 qualify</li>
+        <li>Showing up on calls — discovery, kickoff, QBR</li>
+        <li>Being reachable — the trust signal that competitors can't fake</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="prose r"><strong>Your real job = Director of Brand + Closer.</strong> The Strategist is your assistant. You're the principal. AI handles 80% of the typing. You handle 100% of the <em>decisions, recordings, and closes.</em></p>
+</section>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 04 — TIME ALLOCATION
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:8%;right:-2%">HOURS</div>
+  <div class="section-num r">04 · TIME</div>
+  <h2 class="section-title r">Daily.<br>Weekly.<br>Quantified.</h2>
+  <p class="section-lede r2">Tier 2 = ~30 hours/week steady state. Months 1–3 averages ~18 hours/week because no clients are deployed yet. School stays the spine. Trading stays untouched. AKHARA fits the gaps.</p>
+
+  <h3 style="font-family:'Italiana',serif;font-size:24px;color:var(--white);margin-bottom:20px;letter-spacing:-0.01em" class="r">Weekday breakdown</h3>
+
+  <div class="time-grid r">
+    <div class="time-row head">
+      <div>BLOCK · MON–FRI</div>
+      <div style="text-align:right">TIME</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Morning Slack approvals<small>overnight AI output review · The Closer / Operator / Strategist</small></div>
+      <div class="time-val">30 min</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Outbound — 5 X DMs + 5 LinkedIn DMs<small>AI drafts → you edit 30% → send</small></div>
+      <div class="time-val">45 min</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Reply handling — warm inbound + touch 2/3/4/5<small>The Closer drafts → you approve / rewrite</small></div>
+      <div class="time-val">45 min</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Discovery calls<small>1–2/day by Month 3 — varies week to week</small></div>
+      <div class="time-val">0–90 min</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Active client delivery<small>builds, refinements, QBRs — once contracts close</small></div>
+      <div class="time-val">60–90 min</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Content approval<small>5 posts × 5 min = 25 min/day</small></div>
+      <div class="time-val">25 min</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">IP logging<small>what worked / what failed → Notion KB</small></div>
+      <div class="time-val">15 min</div>
+    </div>
+    <div class="time-row head" style="background:var(--gold-dim);color:var(--gold)">
+      <div>DAILY TOTAL · WEEKDAY</div>
+      <div style="text-align:right;color:var(--gold)">~4 hrs</div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Italiana',serif;font-size:24px;color:var(--white);margin:60px 0 20px;letter-spacing:-0.01em" class="r">Weekend batches</h3>
+
+  <div class="time-grid r2">
+    <div class="time-row head">
+      <div>BLOCK · WEEKEND</div>
+      <div style="text-align:right">TIME</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Saturday — record 20-min Loom<small>setup + record + retake takes about 90 min total</small></div>
+      <div class="time-val">90 min</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Sunday — content batch generation<small>The Strategist generates 25 posts + newsletter from the Loom</small></div>
+      <div class="time-val">60 min</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Sunday — plan next week's outbound list<small>75 prospects identified, segmented, queued</small></div>
+      <div class="time-val">60 min</div>
+    </div>
+    <div class="time-row">
+      <div class="time-task">Friday — metrics review<small>kill bottom 20%, scale top 20%</small></div>
+      <div class="time-val">30 min</div>
+    </div>
+    <div class="time-row head" style="background:var(--gold-dim);color:var(--gold)">
+      <div>WEEKEND TOTAL</div>
+      <div style="text-align:right;color:var(--gold)">~4 hrs</div>
+    </div>
+  </div>
+
+  <p class="prose r" style="margin-top:40px"><strong>Weekly total:</strong> ~24 hrs steady state. <em>Spikes to ~30 hrs when active client work + discovery calls stack.</em> Compatible with PPL school, prop firm trading, and life.</p>
+</section>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 05 — TIMELINE TO FIRST CLOSE
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:5%;left:-3%">TIMELINE</div>
+  <div class="section-num r">05 · WHEN</div>
+  <h2 class="section-title r">First close.<br>Week 3–4.</h2>
+  <p class="section-lede r2">If you ship Week 1 as planned and run Tier 2 from Day 1, the math is straightforward. <strong>Aggressive pace = first close inside 30 days.</strong> Then it compounds.</p>
+
+  <div class="timeline">
+
+    <div class="tl-row active r">
+      <div class="tl-week">WEEK 01</div>
+      <h3 class="tl-h">Foundation live</h3>
+      <div class="tl-body">Domain bought + DNS propagated. Playbook live at akhara.co. The Architect deployed in Make.com. First 5 social posts ship. <strong>25 X DMs sent.</strong> First replies arrive Friday.</div>
+    </div>
+
+    <div class="tl-row r2">
+      <div class="tl-week">WEEK 02</div>
+      <h3 class="tl-h">Pipeline filling</h3>
+      <div class="tl-body">The Closer + The Operator deployed. <strong>50 outbound touches</strong> across X + LinkedIn. First 60-sec Loom demo recorded. <strong>3–5 demos booked.</strong></div>
+    </div>
+
+    <div class="tl-row r3">
+      <div class="tl-week">WEEK 03</div>
+      <h3 class="tl-h">First demos completed</h3>
+      <div class="tl-body">All 4 internal employees live. <strong>75 outbound touches total.</strong> First 6–8 demos run. The 7-step close practiced live. <strong>First close lands Week 3–4.</strong></div>
+    </div>
+
+    <div class="tl-row r">
+      <div class="tl-week">WEEK 04</div>
+      <h3 class="tl-h">Architect auto-onboards client #1</h3>
+      <div class="tl-body">Contract signed → 9-step Architect workflow fires → client live in 14 days. Manual mode 7-day test passes. All employees graduate to Semi-Auto.</div>
+    </div>
+
+    <div class="tl-row r2">
+      <div class="tl-week">WEEK 06–08</div>
+      <h3 class="tl-h">Case study #1 published</h3>
+      <div class="tl-body">First 30-day report sent to client. <strong>Hard numbers</strong> become content. Newsletter issue #6–8 features the case study. <strong>Second close lands.</strong> ~$5–15K MRR.</div>
+    </div>
+
+    <div class="tl-row r3">
+      <div class="tl-week">WEEK 12 · MONTH 3</div>
+      <h3 class="tl-h">3 clients active</h3>
+      <div class="tl-body">~$15–25K MRR depending on tier mix. 50+ social posts shipped. Newsletter at 200–400 subs. First inbound from content starts trickling in.</div>
+    </div>
+
+    <div class="tl-row r">
+      <div class="tl-week">MONTH 4–5</div>
+      <h3 class="tl-h">$40K MRR target hits</h3>
+      <div class="tl-body">5 clients active. Inbound = 30% of pipeline. First tier upgrade pitched. <strong>Cody's $40K threshold cleared.</strong></div>
+    </div>
+
+    <div class="tl-row r2">
+      <div class="tl-week">MONTH 6–8</div>
+      <h3 class="tl-h">$80K MRR breach</h3>
+      <div class="tl-body">7+ clients active or 5 clients on Executive/Department tier. Inbound = 50%+ of pipeline. Distribution moat fully compounding. Brand recognition signals firing (unprompted DMs, competitors copying aesthetic).</div>
+    </div>
+
+    <div class="tl-row r3">
+      <div class="tl-week">MONTH 12</div>
+      <h3 class="tl-h">4 moats locked</h3>
+      <div class="tl-body">Brand 8/10 · Distribution 7/10 · Data 6/10 · IP 8/10 · Compliance 5/10. <strong>Cody said 2 = unstoppable. AKHARA has 4.</strong></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 06 — THE MRR MATH
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:8%;right:-2%">$50K</div>
+  <div class="section-num r">06 · THE MATH</div>
+  <h2 class="section-title r">$40K. $80K.<br>Three scenarios.</h2>
+  <p class="section-lede r2">Reverse-engineered from Tier 2 cadence. <strong>Aggressive = your pace.</strong> No buffer for slacking off — you said you don't slack off.</p>
+
+  <div class="mrr-grid">
+    <div class="mrr-card r">
+      <div class="mrr-label">CONSERVATIVE</div>
+      <div class="mrr-h">$40K</div>
+      <div class="mrr-body">By <strong>Month 8–10</strong>. Steady cadence, average reply rates, no early case study luck. Baseline outcome if everything is just "fine".</div>
+    </div>
+    <div class="mrr-card r2">
+      <div class="mrr-label">REALISTIC</div>
+      <div class="mrr-h">$50–60K</div>
+      <div class="mrr-body">By <strong>Month 6–7</strong>. Tier 2 cadence held consistently. First case study fires by Week 8. Inbound starts contributing by Month 4.</div>
+    </div>
+    <div class="mrr-card aggressive r3">
+      <div class="mrr-label">AGGRESSIVE</div>
+      <div class="mrr-h">$80–100K</div>
+      <div class="mrr-body">By <strong>Month 6–8</strong>. Week 1 ships as planned. First 2 closes hit by Week 6. Case studies fire fast. Inbound compounds early. Your stated pace.</div>
+    </div>
+  </div>
+
+  <p class="prose r"><strong>The closing-math, verified:</strong> 5 closes needed → 17 demos → 49 replies → 245 outbound touches. Tier 2 sends 500 touches/month. <em>You build a pipeline with 6x cushion in the first quarter alone.</em> The question isn't whether you'll close 5. It's which 5 you'll pick.</p>
+</section>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 07 — 6 MOVES TO HIT THE AGGRESSIVE TIMELINE
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:5%;left:-3%">SIX</div>
+  <div class="section-num r">07 · ACCELERATION</div>
+  <h2 class="section-title r">Six moves.<br>To beat the clock.</h2>
+  <p class="section-lede r2">If you want $40–80K in six months, these are the six adjustments to the master file plan. Each one compresses time without compromising quality. <strong>Execute all six.</strong></p>
+
+  <div class="moves">
+
+    <div class="move r">
+      <h3 class="move-h">Compress Phase A from "next weekend" to "this Friday"</h3>
+      <p class="move-body">Every day of setup delay = one fewer day of compounding distribution. <strong>Domain bought Monday. DNS live Tuesday. First social posts Wednesday. First cold DMs Thursday.</strong> No Saturday/Sunday for setup. Those become content recording days.</p>
+    </div>
+
+    <div class="move r2">
+      <h3 class="move-h">Start outbound Day 1, not Day 8</h3>
+      <p class="move-body">Master file says start outbound Week 2. <strong>Skip that.</strong> Send 5 X DMs/day starting the day akhara.co resolves. The Closer can be live by Day 3, so it drafts while you approve. First replies hit by Week 1 Day 5. First close moves from Week 6 to <strong>Week 3</strong>.</p>
+    </div>
+
+    <div class="move r3">
+      <h3 class="move-h">Double the prospect pool, run two niches in parallel</h3>
+      <p class="move-body">Instead of 5 med spa + 5 real estate, identify <strong>20 prospects per niche in Week 1</strong> (40 total, 10/day touched). At 25% reply rate that's 10 replies Week 1, 3–4 demos Week 2, <strong>first close Week 3–4</strong>.</p>
+    </div>
+
+    <div class="move r">
+      <h3 class="move-h">Add personalized founder email (not list-bought)</h3>
+      <p class="move-body">10 emails/day, hand-personalized from public sources (X bio, LinkedIn, company About page). <em>This isn't cold email at volume — this is founder-to-founder outreach via email.</em> Reply rate 15–20%. No domain warmup needed because volume = 10/day. Doesn't violate the no-Smartlead rule.</p>
+    </div>
+
+    <div class="move r2">
+      <h3 class="move-h">Use the playbook itself as your lead magnet</h3>
+      <p class="move-body">Your playbook is already public on akhara.co. <em>That's a $5K consulting deliverable given away free.</em> Every X post, LinkedIn post, DM, newsletter footer → "Full system at akhara.co." Prospects who scroll the whole thing self-qualify. <strong>This is the unfair advantage</strong> — most agencies show a landing page. You show the entire operation. Prospects who DM after reading have already sold themselves.</p>
+    </div>
+
+    <div class="move r3">
+      <h3 class="move-h">Compress Manual Mode test from 7 days to 3</h3>
+      <p class="move-body">Master file says 7-day Manual Mode test before Semi-Auto. If you're approving every output anyway and the test matrix passes at 95%+ by Day 3, <strong>graduate</strong>. Save 4 days. Compounds across all 4 employees.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 08 — DISTRIBUTION RAMP DECISION
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:8%;right:-2%">RAMP</div>
+  <div class="section-num r">08 · THE QUESTION</div>
+  <h2 class="section-title r">Do we ramp<br>distribution harder?</h2>
+
+  <p class="prose r"><strong>Honest answer: not yet.</strong> The three channels in Section 02 are already maxed for what AKHARA can absorb in Months 1–3. Adding a fourth channel now spreads attention thin and dilutes the brand signal. Discipline beats volume.</p>
+
+  <p class="prose r2"><strong>What adds without diluting:</strong></p>
+
+  <ul class="dlist r2">
+    <li><strong>Month 1–3:</strong> Top 3 channels (X · LinkedIn · Newsletter) + the personalized founder-email move. <em>Four total streams.</em></li>
+    <li><strong>Month 4:</strong> Add cold email at volume (50–75/day, warmed domain, case-study backed). Channel #5.</li>
+    <li><strong>Month 6:</strong> Add referral engine (current clients refer for $1K cash or 1 month at 50% off). Channel #6.</li>
+    <li><strong>Month 9:</strong> Add YouTube long-form (1 video/month, repurposed from newsletter teardowns). Channel #7.</li>
+    <li><strong>Month 12+:</strong> Add cold calls — Sovereign tier only, founder-to-founder. Channel #8.</li>
+  </ul>
+
+  <p class="prose r3"><strong>The principle:</strong> Each channel takes ~3 months to mature. Stacking channels too fast = none of them get to depth. <em>Master 3 channels in 3 months. Add 1 channel per 3 months after.</em></p>
+
+  <p class="prose r"><strong>The one thing that does scale immediately:</strong> Once a single channel is producing leads, double down on it — more posts, more DMs, more issues. Don't chase a new channel until the current one plateaus.</p>
+</section>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 09 — TOP 5 NICHE RANKING
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:5%;left:-3%">NICHE</div>
+  <div class="section-num r">09 · WHERE TO HUNT</div>
+  <h2 class="section-title r">Five niches.<br>Ranked.</h2>
+  <p class="section-lede r2">Top 5 of the 12 ICP categories, ranked by <strong>reply rate × LTV × speed-to-revenue × churn × market-shift risk × moat compounding</strong>. When you read #1, there should be no doubt. When you read #5, you should understand why it's not #1. <em>Pick one. Go deep. Expand from strength.</em></p>
+
+  <!-- RANK 1 -->
+  <div class="niche rank-1 r">
+    <div class="niche-head">
+      <div class="niche-rank">
+        <div class="niche-rank-label">RANK</div>
+        <div class="niche-rank-num">01</div>
+      </div>
+      <div class="niche-head-body">
+        <div class="niche-name">Med Spas</div>
+        <div class="niche-tag">HEALTH & WELLNESS · OWNER-OPERATOR · US-FOCUSED</div>
+      </div>
+    </div>
+    <div class="niche-body">
+      <p class="niche-why"><strong>Why #1:</strong> Cody Schneider named this first when asked the highest-LTV niche for AI agencies — minimum $5K LTV per client, often $10K+. Acute pain (no-show rate, 9pm DMs going unanswered, front-desk bottleneck). $500K–$5M revenue businesses. <em>Owner is the decision-maker</em> — no committee, no board, no procurement department. Brutalist luxury aesthetic = unexpected = memorable in an industry drowning in pink-and-rose-gold "clean girl" branding. Compliance moat starts Day 1 (HIPAA-aware support flows). Highest demonstrable ROI in the entire ICP list — one recovered after-hours booking = $500–$2000 = pays for AKHARA in a single transaction. <strong>Highest referral density of any niche</strong> — med spa owners are tightly networked, attend the same conferences, share vendors in private groups.</p>
+
+      <div class="niche-metrics">
+        <div class="niche-metric">
+          <div class="niche-metric-label">REPLY RATE</div>
+          <div class="niche-metric-val">30–40%</div>
+          <div class="niche-metric-sub">acute pain · owner-DM</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CLOSE RATE</div>
+          <div class="niche-metric-val">35–45%</div>
+          <div class="niche-metric-sub">obvious ROI math</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">AVG TIER FIT</div>
+          <div class="niche-metric-val">$5–10K</div>
+          <div class="niche-metric-sub">Operator → Executive</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">SPEED · FIRST CLOSE</div>
+          <div class="niche-metric-val">3–4 wks</div>
+          <div class="niche-metric-sub">fastest path</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CHURN</div>
+          <div class="niche-metric-val">~8%/yr</div>
+          <div class="niche-metric-sub">sticky · ROI-locked</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">MARKET RISK</div>
+          <div class="niche-metric-val">LOW</div>
+          <div class="niche-metric-sub">growing $19B → $48B by 2030</div>
+        </div>
+      </div>
+
+      <div class="niche-verdict"><strong>VERDICT · LOCK THIS NICHE.</strong> Highest reply, highest close, fastest revenue, lowest churn, lowest market risk. Compounds across all 6 moats — Brand (luxury aesthetic fits), Distribution (Instagram + tightly-networked referrals), Data (compounding response times), Compliance (HIPAA), IP (industry-specific Closer prompts). The single niche where AKHARA's brutalist luxury wins on aesthetic alone. <strong>No fear.</strong></div>
+    </div>
+  </div>
+
+  <!-- RANK 2 -->
+  <div class="niche r">
+    <div class="niche-head">
+      <div class="niche-rank">
+        <div class="niche-rank-label">RANK</div>
+        <div class="niche-rank-num">02</div>
+      </div>
+      <div class="niche-head-body">
+        <div class="niche-name">Real Estate</div>
+        <div class="niche-tag">AGENTS · BROKERAGES · DEVELOPERS</div>
+      </div>
+    </div>
+    <div class="niche-body">
+      <p class="niche-why"><strong>Why #2 not #1:</strong> Numbers are nearly as strong as med spas, but two things hold it back. <strong>(1)</strong> Top 1% agent is the target — bottom 80% buys what the top buys, but reaching the top 1% requires status signaling that takes longer to build than acute-pain selling to med spas. <strong>(2)</strong> Real estate market cycles are real — a soft housing market makes agents nervous about subscription spending. Med spas grow whether real estate is up or down. <em>Still elite tier-fit for Senior + Executive.</em></p>
+
+      <div class="niche-metrics">
+        <div class="niche-metric">
+          <div class="niche-metric-label">REPLY RATE</div>
+          <div class="niche-metric-val">25–35%</div>
+          <div class="niche-metric-sub">speed-to-lead bait works</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CLOSE RATE</div>
+          <div class="niche-metric-val">30–40%</div>
+          <div class="niche-metric-sub">requires top-1% positioning</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">AVG TIER FIT</div>
+          <div class="niche-metric-val">$5–10K</div>
+          <div class="niche-metric-sub">Operator → Executive</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">SPEED · FIRST CLOSE</div>
+          <div class="niche-metric-val">4–6 wks</div>
+          <div class="niche-metric-sub">slower than med spas</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CHURN</div>
+          <div class="niche-metric-val">~12%/yr</div>
+          <div class="niche-metric-sub">market-cycle exposed</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">MARKET RISK</div>
+          <div class="niche-metric-val">MED</div>
+          <div class="niche-metric-sub">housing cycle correlation</div>
+        </div>
+      </div>
+
+      <div class="niche-verdict"><strong>VERDICT · EXPANSION NICHE · MONTH 7+.</strong> Strong second move once med spa case studies exist. Compliance moat overlaps (TCPA + Fair Housing). Use med spa case study language ("response time cut 92%") in cold real estate DMs — same outcome, different language. <strong>Don't start here. Earn it.</strong></div>
+    </div>
+  </div>
+
+  <!-- RANK 3 -->
+  <div class="niche r2">
+    <div class="niche-head">
+      <div class="niche-rank">
+        <div class="niche-rank-label">RANK</div>
+        <div class="niche-rank-num">03</div>
+      </div>
+      <div class="niche-head-body">
+        <div class="niche-name">E-commerce · DTC</div>
+        <div class="niche-tag">SHOPIFY · KLAVIYO · GORGIAS USERS</div>
+      </div>
+    </div>
+    <div class="niche-body">
+      <p class="niche-why"><strong>Why #3:</strong> Massive market, high-volume support pain (47 unread tickets at 8am Monday), clear ROI math (lower CAC, higher repeat rate). <strong>What knocks it down:</strong> DTC founders are <em>sophisticated buyers</em> — they've seen 50 agencies, run their own AI experiments, and are skeptical by default. Sales cycle longer. Margins thin = haggling on price (violates the no-discount rule). DTC market itself is in flux — CAC tripled in 3 years, many founders one-quarter from layoffs. <em>You're selling to a stressed buyer in a stressed market.</em></p>
+
+      <div class="niche-metrics">
+        <div class="niche-metric">
+          <div class="niche-metric-label">REPLY RATE</div>
+          <div class="niche-metric-val">15–25%</div>
+          <div class="niche-metric-sub">sophisticated buyers</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CLOSE RATE</div>
+          <div class="niche-metric-val">20–30%</div>
+          <div class="niche-metric-sub">longer sales cycle</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">AVG TIER FIT</div>
+          <div class="niche-metric-val">$5–20K</div>
+          <div class="niche-metric-sub">Operator → Department</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">SPEED · FIRST CLOSE</div>
+          <div class="niche-metric-val">6–8 wks</div>
+          <div class="niche-metric-sub">discovery + integration</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CHURN</div>
+          <div class="niche-metric-val">~15%/yr</div>
+          <div class="niche-metric-sub">budget-cycle exposed</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">MARKET RISK</div>
+          <div class="niche-metric-val">HIGH</div>
+          <div class="niche-metric-sub">CAC inflation · AI competition</div>
+        </div>
+      </div>
+
+      <div class="niche-verdict"><strong>VERDICT · DEFER TO YEAR 2.</strong> Highest absolute MRR ceiling per client (Department tier easy), but slowest to crack and most volatile market. Revisit when you have 3+ case studies + brand recognition.</div>
+    </div>
+  </div>
+
+  <!-- RANK 4 -->
+  <div class="niche r2">
+    <div class="niche-head">
+      <div class="niche-rank">
+        <div class="niche-rank-label">RANK</div>
+        <div class="niche-rank-num">04</div>
+      </div>
+      <div class="niche-head-body">
+        <div class="niche-name">Course Creators · Coaches</div>
+        <div class="niche-tag">HIGH-TICKET INFOPRODUCTS · COHORT-BASED</div>
+      </div>
+    </div>
+    <div class="niche-body">
+      <p class="niche-why"><strong>Why #4:</strong> Reply rates are <em>excellent</em> — creators reply to DMs personally, they understand AI tools, they're terminally online. Pain is real (completion below 15%, refund rates 8–12%, email lists going dead). <strong>What knocks it down:</strong> Creators have <em>radically inconsistent revenue</em> — six-figure month followed by a $10K month. Churn higher than expected because subscriptions get cut after a soft launch. Brand-wise, AKHARA's brutalist luxury aesthetic clashes with the coach/creator pastel-and-emoji vibe. <em>Style mismatch hurts pipeline.</em></p>
+
+      <div class="niche-metrics">
+        <div class="niche-metric">
+          <div class="niche-metric-label">REPLY RATE</div>
+          <div class="niche-metric-val">30–40%</div>
+          <div class="niche-metric-sub">excellent · DM-native</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CLOSE RATE</div>
+          <div class="niche-metric-val">25–35%</div>
+          <div class="niche-metric-sub">launch-cycle dependent</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">AVG TIER FIT</div>
+          <div class="niche-metric-val">$2.5–5K</div>
+          <div class="niche-metric-sub">Foundation → Operator</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">SPEED · FIRST CLOSE</div>
+          <div class="niche-metric-val">3–5 wks</div>
+          <div class="niche-metric-sub">fast but lower ticket</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CHURN</div>
+          <div class="niche-metric-val">~20%/yr</div>
+          <div class="niche-metric-sub">revenue volatility</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">MARKET RISK</div>
+          <div class="niche-metric-val">MED</div>
+          <div class="niche-metric-sub">ChatGPT commoditized content</div>
+        </div>
+      </div>
+
+      <div class="niche-verdict"><strong>VERDICT · SKIP UNLESS DESPERATE.</strong> Lower MRR ceiling per client + higher churn = working harder for less compounding revenue. Aesthetic mismatch with AKHARA brand. <em>Only revisit if med spa pilot fails the 90-day review.</em></div>
+    </div>
+  </div>
+
+  <!-- RANK 5 -->
+  <div class="niche r3">
+    <div class="niche-head">
+      <div class="niche-rank">
+        <div class="niche-rank-label">RANK</div>
+        <div class="niche-rank-num">05</div>
+      </div>
+      <div class="niche-head-body">
+        <div class="niche-name">Trades & Local</div>
+        <div class="niche-tag">PLUMBERS · ELECTRICIANS · HVAC · CONTRACTORS</div>
+      </div>
+    </div>
+    <div class="niche-body">
+      <p class="niche-why"><strong>Why #5:</strong> Massive market, brutal pain (missed calls = $400–$2000 lost per call), high LTV per close. <strong>What knocks it down for AKHARA specifically:</strong> Three structural issues. <strong>(1)</strong> Trades buyers are <em>deeply skeptical of slick tech and luxury aesthetics</em> — they trust plain-English vendors in baseball caps, not Italiana on void black. <em>Brand mismatch is severe.</em> <strong>(2)</strong> Older buyer demographic prefers phone over DM — your fastest channel (X DMs) is your worst here. <strong>(3)</strong> They want a "dispatcher who never quits," not "an AI employee" — selling the same product but in the wrong language slows everything down.</p>
+
+      <div class="niche-metrics">
+        <div class="niche-metric">
+          <div class="niche-metric-label">REPLY RATE</div>
+          <div class="niche-metric-val">10–18%</div>
+          <div class="niche-metric-sub">wrong channels · skeptical</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CLOSE RATE</div>
+          <div class="niche-metric-val">20–30%</div>
+          <div class="niche-metric-sub">if you reframe correctly</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">AVG TIER FIT</div>
+          <div class="niche-metric-val">$1.5–5K</div>
+          <div class="niche-metric-sub">Foundation → Operator</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">SPEED · FIRST CLOSE</div>
+          <div class="niche-metric-val">5–8 wks</div>
+          <div class="niche-metric-sub">cold-call dependent</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">CHURN</div>
+          <div class="niche-metric-val">~10%/yr</div>
+          <div class="niche-metric-sub">low once landed</div>
+        </div>
+        <div class="niche-metric">
+          <div class="niche-metric-label">MARKET RISK</div>
+          <div class="niche-metric-val">VERY LOW</div>
+          <div class="niche-metric-sub">recession-proof</div>
+        </div>
+      </div>
+
+      <div class="niche-verdict"><strong>VERDICT · WRONG FIT FOR AKHARA.</strong> Recession-proof market + low churn = great for some agency. Not yours. The brand mismatch alone makes this 3x harder than it should be. <em>Skip unless you decide to launch a sub-brand specifically for trades — which is a Year 3+ conversation.</em></div>
+    </div>
+  </div>
+
+  <!-- DIMENSION TABLE — quick comparison -->
+  <div class="dim-table r">
+    <div class="dim-row head">
+      <div>NICHE</div>
+      <div>REPLY</div>
+      <div>CLOSE</div>
+      <div>SPEED</div>
+      <div>CHURN</div>
+      <div>RISK</div>
+    </div>
+    <div class="dim-row">
+      <div class="dim-name">Med Spas</div>
+      <div class="dim-v">35%</div>
+      <div class="dim-v">40%</div>
+      <div class="dim-v">3w</div>
+      <div class="dim-v">8%</div>
+      <div class="dim-v">LOW</div>
+    </div>
+    <div class="dim-row">
+      <div class="dim-name">Real Estate</div>
+      <div class="dim-v">30%</div>
+      <div class="dim-v">35%</div>
+      <div class="dim-v">5w</div>
+      <div class="dim-v">12%</div>
+      <div class="dim-v">MED</div>
+    </div>
+    <div class="dim-row">
+      <div class="dim-name">E-com · DTC</div>
+      <div class="dim-v">20%</div>
+      <div class="dim-v">25%</div>
+      <div class="dim-v">7w</div>
+      <div class="dim-v">15%</div>
+      <div class="dim-v">HIGH</div>
+    </div>
+    <div class="dim-row">
+      <div class="dim-name">Course Creators</div>
+      <div class="dim-v">35%</div>
+      <div class="dim-v">30%</div>
+      <div class="dim-v">4w</div>
+      <div class="dim-v">20%</div>
+      <div class="dim-v">MED</div>
+    </div>
+    <div class="dim-row">
+      <div class="dim-name">Trades · Local</div>
+      <div class="dim-v">14%</div>
+      <div class="dim-v">25%</div>
+      <div class="dim-v">6w</div>
+      <div class="dim-v">10%</div>
+      <div class="dim-v">V·LOW</div>
+    </div>
+  </div>
+
+  <p class="prose r"><strong>The math collapsed:</strong> Med spas reply 35%, close 40%, churn 8%. Real estate reply 30%, close 35%, churn 12%. <em>Across 100 prospects: med spas produce ~14 closes/year worth of pipeline vs real estate's ~10.5</em>. Med spas also retain longer = each close stays revenue 50% longer. <strong>Math says #1 with zero ambiguity.</strong></p>
+
+  <p class="prose r"><strong>The fear addressed:</strong> Picking med spas doesn't lock you out of the other four. Year 1 = med spas only. Year 2 = real estate added. Year 3 = e-commerce added. <em>The wide approach takes 5 years to reach the same revenue niching takes 18 months to reach.</em> Niching is faster, not slower.</p>
+
+  <p class="prose r"><strong>The market-shift insurance:</strong> Med spa industry growing 11% CAGR — $19B (2024) → $48B (2030). No regulatory threat. No AI-replacement threat (they sell physical procedures). No platform-collapse threat (they own their customers via SMS/email, not algorithm-dependent). <em>The lowest market-shift risk of any niche in your ICP list.</em></p>
+
+</section>
+
+<!-- ─────────────────────────────────────────────
+     SECTION 10 — EXECUTION CHECKLIST
+───────────────────────────────────────────────── -->
+<section>
+  <div class="wmark" style="top:5%;left:-3%">EXECUTE</div>
+  <div class="section-num r">10 · CHECKLIST</div>
+  <h2 class="section-title r">Tick. Ship. Repeat.</h2>
+  <p class="section-lede r2">Every actionable item from this document, in execution order. <strong>Tick as you go.</strong> State saves in your browser — close the tab, come back, your progress is still there. Reset only happens if you clear browser storage.</p>
+
+  <div class="check-progress r">
+    <div>EXECUTION PROGRESS</div>
+    <div><span class="check-progress-num" id="checkCount">0</span> / <span class="check-progress-num" id="checkTotal">0</span></div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="checklist-meta r">WEEK 01 · FOUNDATION</div>
+  <h3 class="checklist-h r">Get AKHARA live this week.</h3>
+
+  <label class="check r"><input type="checkbox" data-id="w1-01"><span class="check-label">Push final playbook + launch-phases to GitHub Pages (replace index.html in SABLE-Debug/PLAYBOOK)</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-02"><span class="check-label">Buy domain at Cloudflare Registrar — pick <strong>akhara.com / akhara.co / akhara.agency</strong></span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-03"><span class="check-label">Send domain to Claude → get DNS records → paste into Cloudflare DNS</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-04"><span class="check-label">Wait for DNS propagation (5–30 min) → verify akhara.co loads playbook</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-05"><span class="check-label">Push <strong>akhara-strategy.html</strong> (this file) to private route on GitHub Pages</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-06"><span class="check-label">Verify Claude API key + $20 credits at console.anthropic.com</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-07"><span class="check-label">Confirm Claude Max 20x subscription active</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-08"><span class="check-label">Cancel Midjourney subscription</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-09"><span class="check-label">Identify <strong>20 med spa prospects</strong> in HubSpot (revenue $500K–$5M, US-based, active social presence)</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-10"><span class="check-label">Claude writes <strong>The Architect</strong> Make.com blueprint + system prompt</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-11"><span class="check-label">Import Architect blueprint → OAuth all apps (HubSpot, Notion, Drive, PandaDoc, Wise, Gmail, Calendly, Slack)</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-12"><span class="check-label">Test The Architect with fake HubSpot "Closed Won" deal → verify all 9 steps fire</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-13"><span class="check-label">Ship first 3 social posts — X, LinkedIn, IG — the void black launch</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-14"><span class="check-label">Record first 20-min Loom — AKHARA thesis: "we don't sell tools, we sell employees"</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-15"><span class="check-label">The Strategist generates Week 2 content from the Loom</span></label>
+  <label class="check r"><input type="checkbox" data-id="w1-16"><span class="check-label">Send first <strong>5 cold X DMs</strong> to med spa owners (start outbound Day 1 not Day 8)</span></label>
+
+  <!-- WEEK 2 -->
+  <div class="checklist-meta r2" style="margin-top:48px">WEEK 02 · CLOSER + OPERATOR LIVE</div>
+  <h3 class="checklist-h r2">Pipeline fills.</h3>
+
+  <label class="check r2"><input type="checkbox" data-id="w2-01"><span class="check-label">Claude writes The Closer Make.com blueprint + med-spa-specific system prompt</span></label>
+  <label class="check r2"><input type="checkbox" data-id="w2-02"><span class="check-label">Import Closer blueprint → OAuth → test with fake inbound</span></label>
+  <label class="check r2"><input type="checkbox" data-id="w2-03"><span class="check-label">Claude writes The Operator Make.com blueprint + system prompt</span></label>
+  <label class="check r2"><input type="checkbox" data-id="w2-04"><span class="check-label">Import Operator blueprint → OAuth → test</span></label>
+  <label class="check r2"><input type="checkbox" data-id="w2-05"><span class="check-label">Record 60-sec demo Loom — Med Spa Demo 02 from Section 12</span></label>
+  <label class="check r2"><input type="checkbox" data-id="w2-06"><span class="check-label">Daily Mon–Fri: <strong>5 X DMs + 5 LinkedIn DMs</strong> sent (50/week target)</span></label>
+  <label class="check r2"><input type="checkbox" data-id="w2-07"><span class="check-label">Friday review — kill bottom 20% templates, double down on top 20%</span></label>
+  <label class="check r2"><input type="checkbox" data-id="w2-08"><span class="check-label">Saturday — record next 20-min Loom</span></label>
+  <label class="check r2"><input type="checkbox" data-id="w2-09"><span class="check-label">Sunday batch — Strategist generates Week 3 content + plan Week 3's 50 prospects</span></label>
+
+  <!-- WEEK 3 -->
+  <div class="checklist-meta r3" style="margin-top:48px">WEEK 03 · STRATEGIST + CLIENT ASSETS</div>
+  <h3 class="checklist-h r3">Ramp.</h3>
+
+  <label class="check r3"><input type="checkbox" data-id="w3-01"><span class="check-label">Claude writes The Strategist Make.com blueprint + system prompt</span></label>
+  <label class="check r3"><input type="checkbox" data-id="w3-02"><span class="check-label">Import Strategist → OAuth → test (Buffer + Notion + Drive)</span></label>
+  <label class="check r3"><input type="checkbox" data-id="w3-03"><span class="check-label">Daily Mon–Fri: <strong>10 X DMs + 5 LinkedIn DMs</strong> (75/week target, full Tier 2 cadence)</span></label>
+  <label class="check r3"><input type="checkbox" data-id="w3-04"><span class="check-label">Build Wise payment links for all 5 tiers (Foundation through Sovereign)</span></label>
+  <label class="check r3"><input type="checkbox" data-id="w3-05"><span class="check-label">Build PandaDoc contract template — 50% setup fee, Net-7, 3-mo min</span></label>
+  <label class="check r3"><input type="checkbox" data-id="w3-06"><span class="check-label">Build Notion onboarding questionnaire (brand assets, voice samples, success metrics)</span></label>
+  <label class="check r3"><input type="checkbox" data-id="w3-07"><span class="check-label">Build client Notion workspace template (6 pages per Section 23)</span></label>
+  <label class="check r3"><input type="checkbox" data-id="w3-08"><span class="check-label">Launch <strong>AKHARA Weekly newsletter</strong> — Issue #1 published</span></label>
+  <label class="check r3"><input type="checkbox" data-id="w3-09"><span class="check-label">First demos completed (target: 6–8 demos this week)</span></label>
+  <label class="check r3"><input type="checkbox" data-id="w3-10"><span class="check-label">⚡ <strong>FIRST CLOSE LANDS</strong> ⚡</span></label>
+
+  <!-- WEEK 4 -->
+  <div class="checklist-meta r" style="margin-top:48px">WEEK 04 · ARCHITECT AUTO-ONBOARDS</div>
+  <h3 class="checklist-h r">Validate the system.</h3>
+
+  <label class="check r"><input type="checkbox" data-id="w4-01"><span class="check-label">HubSpot "Closed Won" → Architect fires the full 9-step automated onboarding sequence</span></label>
+  <label class="check r"><input type="checkbox" data-id="w4-02"><span class="check-label">Setup fee invoice sent via Wise (50% upfront before any build begins)</span></label>
+  <label class="check r"><input type="checkbox" data-id="w4-03"><span class="check-label">Client kickoff call (30 min, Calendly-booked by The Architect)</span></label>
+  <label class="check r"><input type="checkbox" data-id="w4-04"><span class="check-label">Run 40-scenario test matrix across all 4 internal employees</span></label>
+  <label class="check r"><input type="checkbox" data-id="w4-05"><span class="check-label">If 95%+ pass rate by Day 3 → graduate all employees from Manual to <strong>Semi-Auto</strong></span></label>
+  <label class="check r"><input type="checkbox" data-id="w4-06"><span class="check-label">Continue daily outbound: 15 touches/day (~75/wk)</span></label>
+  <label class="check r"><input type="checkbox" data-id="w4-07"><span class="check-label">Newsletter Issue #2 published</span></label>
+
+  <!-- DAILY RHYTHM -->
+  <div class="checklist-meta r2" style="margin-top:48px">DAILY · MON–FRI · ~4 HOURS</div>
+  <h3 class="checklist-h r2">The rhythm.</h3>
+
+  <label class="check r2"><input type="checkbox" data-id="d-01"><span class="check-label">07:00 — Slack approvals review (overnight AI output) · 30 min</span></label>
+  <label class="check r2"><input type="checkbox" data-id="d-02"><span class="check-label">07:30 — Outbound: 5 X DMs + 5 LinkedIn DMs sent · 45 min</span></label>
+  <label class="check r2"><input type="checkbox" data-id="d-03"><span class="check-label">09:00 — Discovery calls (when booked) · 0–90 min</span></label>
+  <label class="check r2"><input type="checkbox" data-id="d-04"><span class="check-label">11:00 — Reply handling, touch 2/3/4/5s · 45 min</span></label>
+  <label class="check r2"><input type="checkbox" data-id="d-05"><span class="check-label">14:00 — Active client delivery · 60–90 min (once clients exist)</span></label>
+  <label class="check r2"><input type="checkbox" data-id="d-06"><span class="check-label">15:30 — Content approval, 5 posts · 25 min</span></label>
+  <label class="check r2"><input type="checkbox" data-id="d-07"><span class="check-label">16:00 — IP logging to Notion KB · 15 min</span></label>
+
+  <!-- WEEKLY RHYTHM -->
+  <div class="checklist-meta r3" style="margin-top:48px">WEEKLY BATCHES</div>
+  <h3 class="checklist-h r3">The Sunday + Friday ritual.</h3>
+
+  <label class="check r3"><input type="checkbox" data-id="wk-01"><span class="check-label">Saturday — record 20-min Loom · 90 min</span></label>
+  <label class="check r3"><input type="checkbox" data-id="wk-02"><span class="check-label">Sunday 11:00 — Strategist generates 25 posts from the Loom · 60 min</span></label>
+  <label class="check r3"><input type="checkbox" data-id="wk-03"><span class="check-label">Sunday 13:00 — plan next week's 75 prospects · 60 min</span></label>
+  <label class="check r3"><input type="checkbox" data-id="wk-04"><span class="check-label">Friday 16:00 — metrics review (kill bottom 20%, scale top 20%) · 30 min</span></label>
+  <label class="check r3"><input type="checkbox" data-id="wk-05"><span class="check-label">Friday 16:30 — update one weakest-performing employee's system prompt · 30 min</span></label>
+  <label class="check r3"><input type="checkbox" data-id="wk-06"><span class="check-label">Newsletter issue published each Tuesday · ~90 min Sunday to write</span></label>
+
+  <!-- MOAT BUILDING -->
+  <div class="checklist-meta r" style="margin-top:48px">MOAT MAINTENANCE</div>
+  <h3 class="checklist-h r">The compounding work.</h3>
+
+  <label class="check r"><input type="checkbox" data-id="m-01"><span class="check-label"><strong>Brand:</strong> 100% of public content uses Italiana + DM Mono + Meridian Gold on void</span></label>
+  <label class="check r"><input type="checkbox" data-id="m-02"><span class="check-label"><strong>Brand:</strong> Zero banned words in any output (cutting-edge, synergy, unlock, etc.)</span></label>
+  <label class="check r"><input type="checkbox" data-id="m-03"><span class="check-label"><strong>Distribution:</strong> Hit weekly content count — 5 X + 3 LinkedIn + 1 newsletter + 2 IG</span></label>
+  <label class="check r"><input type="checkbox" data-id="m-04"><span class="check-label"><strong>Distribution:</strong> Track newsletter sub count + X/LinkedIn follower growth monthly</span></label>
+  <label class="check r"><input type="checkbox" data-id="m-05"><span class="check-label"><strong>IP:</strong> Update at least one employee's system prompt every Friday</span></label>
+  <label class="check r"><input type="checkbox" data-id="m-06"><span class="check-label"><strong>IP:</strong> Document every objection heard + the response that worked</span></label>
+  <label class="check r"><input type="checkbox" data-id="m-07"><span class="check-label"><strong>Data:</strong> Log response time, reply rate, booking rate per industry per week</span></label>
+  <label class="check r"><input type="checkbox" data-id="m-08"><span class="check-label"><strong>Compliance:</strong> Med spa deployment uses HIPAA-aware support flows from Day 1</span></label>
+
+  <!-- ACCELERATION MOVES -->
+  <div class="checklist-meta r2" style="margin-top:48px">SIX MOVES · BEAT THE CLOCK</div>
+  <h3 class="checklist-h r2">Hit $40–80K in 6 months.</h3>
+
+  <label class="check r2"><input type="checkbox" data-id="a-01"><span class="check-label">Phase A compressed: domain bought Monday, DNS Tuesday, posts Wednesday, DMs Thursday</span></label>
+  <label class="check r2"><input type="checkbox" data-id="a-02"><span class="check-label">Outbound started Day 1, not Day 8 (5 X DMs/day from the moment akhara.co resolves)</span></label>
+  <label class="check r2"><input type="checkbox" data-id="a-03"><span class="check-label">20 med spa prospects identified in Week 1, not 5</span></label>
+  <label class="check r2"><input type="checkbox" data-id="a-04"><span class="check-label">Personalized founder email added — 10/day, hand-personalized from public sources</span></label>
+  <label class="check r2"><input type="checkbox" data-id="a-05"><span class="check-label">Playbook used as the lead magnet — every CTA links to akhara.co</span></label>
+  <label class="check r2"><input type="checkbox" data-id="a-06"><span class="check-label">Manual Mode test compressed to 3 days if 95%+ pass rate hits early</span></label>
+
+  <!-- MILESTONES -->
+  <div class="checklist-meta r3" style="margin-top:48px">MILESTONES</div>
+  <h3 class="checklist-h r3">The numbers that matter.</h3>
+
+  <label class="check r3"><input type="checkbox" data-id="ms-01"><span class="check-label">⚡ <strong>First close lands</strong> · Week 3–4</span></label>
+  <label class="check r3"><input type="checkbox" data-id="ms-02"><span class="check-label">⚡ <strong>First case study published</strong> · Week 6–8</span></label>
+  <label class="check r3"><input type="checkbox" data-id="ms-03"><span class="check-label">⚡ <strong>Second close</strong> · Week 6–8</span></label>
+  <label class="check r3"><input type="checkbox" data-id="ms-04"><span class="check-label">⚡ <strong>3 clients active</strong> · Month 3 · ~$15–25K MRR</span></label>
+  <label class="check r3"><input type="checkbox" data-id="ms-05"><span class="check-label">⚡ <strong>$40K MRR cleared</strong> · Month 4–5</span></label>
+  <label class="check r3"><input type="checkbox" data-id="ms-06"><span class="check-label">⚡ <strong>$80K MRR breach</strong> · Month 6–8 · Cody's ceiling</span></label>
+  <label class="check r3"><input type="checkbox" data-id="ms-07"><span class="check-label">⚡ <strong>4 moats locked</strong> · Month 12 · 2x Michia's bar</span></label>
+
+  <!-- 90-DAY REVIEW -->
+  <div class="checklist-meta r" style="margin-top:48px">90-DAY NICHE REVIEW</div>
+  <h3 class="checklist-h r">Lock or pivot.</h3>
+
+  <label class="check r"><input type="checkbox" data-id="r-01"><span class="check-label">Reply rate above 25% on med spa outbound?</span></label>
+  <label class="check r"><input type="checkbox" data-id="r-02"><span class="check-label">Close rate above 30% on demos?</span></label>
+  <label class="check r"><input type="checkbox" data-id="r-03"><span class="check-label">Case study #1 has hard numbers (response time, booking rate, no-show drop)?</span></label>
+  <label class="check r"><input type="checkbox" data-id="r-04"><span class="check-label">Inbound starting (DMs, newsletter subs, prospects mentioning AKHARA unprompted)?</span></label>
+  <label class="check r"><input type="checkbox" data-id="r-05"><span class="check-label">If all 4 above are YES → <strong>deepen med spa</strong>, expand to Real Estate Month 7</span></label>
+  <label class="check r"><input type="checkbox" data-id="r-06"><span class="check-label">If 2+ are NO → <strong>pivot to Real Estate</strong> before Month 4</span></label>
+
+</section>
+
+<!-- STAMP -->
+<section class="stamp">
+  <div class="wmark" style="top:20%;left:50%;transform:translateX(-50%)">AKHARA</div>
+  <h2 class="stamp-h">Four moats.<br>Six months.<br><em>One operator.</em></h2>
+  <div class="stamp-sub">· EXECUTION STARTS MONDAY ·</div>
+</section>
+
+<script>
+// Loader
+setTimeout(function(){
+  var l=document.getElementById('loader');
+  if(l && !l.classList.contains('out')){
+    l.classList.add('out');
+    setTimeout(startObservers, 200);
+  }
+},2800);
+
+// Safety net
+setTimeout(function(){
+  var l=document.getElementById('loader');
+  if(l && !l.classList.contains('out')){
+    l.classList.add('out');
+    startObservers();
+  }
+},4500);
+
+// Reveal observer
+function startObservers(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+      }
+    });
+  },{rootMargin:'-50px 0px',threshold:0.1});
+  document.querySelectorAll('.r,.r2,.r3').forEach(function(el){io.observe(el);});
+}
+
+// Film grain
+var c=document.getElementById('gc');
+var g=c.getContext('2d');
+function rs(){c.width=window.innerWidth;c.height=window.innerHeight;}
+rs(); window.addEventListener('resize',rs);
+function fr(){
+  var d=g.createImageData(c.width,c.height);
+  for(var i=0;i<d.data.length;i+=4){
+    var v=Math.random()*255|0;
+    d.data[i]=d.data[i+1]=d.data[i+2]=v;
+    d.data[i+3]=15;
+  }
+  g.putImageData(d,0,0);
+  setTimeout(fr,90);
+}
+fr();
+
+// Scroll progress
+var prog=document.getElementById('progress');
+window.addEventListener('scroll',function(){
+  var h=document.documentElement;
+  var p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  prog.style.width=p+'%';
+});
+
+// CHECKLIST — persistence + progress counter
+(function(){
+  var STORAGE_KEY='akhara-strategy-checks-v1';
+  var boxes=document.querySelectorAll('.check input[type="checkbox"]');
+  var countEl=document.getElementById('checkCount');
+  var totalEl=document.getElementById('checkTotal');
+  if(!boxes.length||!countEl||!totalEl)return;
+
+  totalEl.textContent=boxes.length;
+
+  // Load saved state
+  var saved={};
+  try{
+    var raw=localStorage.getItem(STORAGE_KEY);
+    if(raw)saved=JSON.parse(raw);
+  }catch(e){saved={};}
+
+  function updateCount(){
+    var n=0;
+    boxes.forEach(function(b){if(b.checked)n++;});
+    countEl.textContent=n;
+  }
+
+  function updateLabel(box){
+    var parent=box.closest('.check');
+    if(!parent)return;
+    if(box.checked)parent.classList.add('done');
+    else parent.classList.remove('done');
+  }
+
+  // Restore each box from storage
+  boxes.forEach(function(box){
+    var id=box.getAttribute('data-id');
+    if(id&&saved[id]===true){
+      box.checked=true;
+      updateLabel(box);
+    }
+    box.addEventListener('change',function(){
+      var id=box.getAttribute('data-id');
+      if(id){
+        saved[id]=box.checked;
+        try{localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));}catch(e){}
+      }
+      updateLabel(box);
+      updateCount();
+    });
+  });
+
+  updateCount();
+})();
+</script>
+
+</body>
+</html>
